@@ -1,0 +1,12 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: employee-permission
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5060/eureka, http://localhost:5061/eureka
+allowed:
+  origin: http://localhost:9527

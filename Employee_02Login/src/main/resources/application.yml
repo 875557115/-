@@ -1,0 +1,12 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: employee-login
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5060/eureka, http://localhost:5061/eureka
+allowed:
+  origin: http://localhost:9527

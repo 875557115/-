@@ -1,0 +1,12 @@
+server:
+  port: 5060
+spring:
+  application:
+    name: employee-eureka02
+eureka:
+  instance: localhost
+  client:
+    registerwithEureka: true #注册自己（默认true，用在集群中）
+    fetchRegistry: true   #获取自己的信息（默认true，用在集群中）
+    service-url:
+      defaultZone: http://localhost:5060/eureka, http://localhost:5061/eureka

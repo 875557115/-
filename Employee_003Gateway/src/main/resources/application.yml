@@ -1,0 +1,44 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: employee-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 开启从注册中心动态创建路由功能，利用微服务名称进行路由
+      routes:
+        - id: employee-login #随意命名，必须唯一
+          uri: lb://employee-login #路由目标url
+          predicates: #断言
+            - Path=/user/** # 匹配的被路由路径
+
+        #配置Product Service的路由映射
+        - id: employee-employee
+          uri: lb://employee-employee
+          predicates:
+            - Path=/employee/**
+
+        - id: employee-permission
+          uri: lb://employee-permission
+          predicates:
+            - Path=/perm/**
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins: '*'
+#            allowedCredentials: true
+#            allowedMethods:
+#              - GET
+#              - POST
+#              - OPTIONS
+#              - DELETE
+#              - PUT
+#              - HEAD
+#              - PATCH
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5060/eureka, http://localhost:5061/eureka
